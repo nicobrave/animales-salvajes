@@ -26,7 +26,7 @@
         ></div>
       </div>
       <div class="card col-12 col-sm-4 bg-warning text-dark offset-1 shadow-lg">
-        <div class="card-body">
+        <form action="#" class="card-body">
           <h5 class="card-title">Registrar animal en:</h5>
           <h6 class="card-subtitle mb-2 text-muted">
             Ingrese los datos del animal
@@ -35,7 +35,7 @@
           <div class="card-text my-3">
             <div class="form-group">
               <label for="exampleInputPassword1">Nombre del animal:</label>
-              <select class="form-control bg-dark text-white" id="animal">
+              <select class="form-control bg-dark text-white" id="animal" name="animal">
                 <option disabled selected>Seleccione un animal</option>
                 <option value="Leon">León</option>
                 <option value="Lobo">Lobo</option>
@@ -47,7 +47,7 @@
 
             <div class="form-group">
               <label for="exampleInputPassword1">Años de edad estimados:</label>
-              <select class="form-control bg-dark text-white" id="edad">
+              <select class="form-control bg-dark text-white" id="edad" name="edad">
                 <option disabled selected>Seleccione un rango de años</option>
 
                 <option value="0 - 1 años">0 - 1 años</option>
@@ -74,7 +74,7 @@
           </div>
 
           <btn class="btn btn-light d-block" id="btnRegistrar">Agregar</btn>
-        </div>
+        </form>
       </div>
     </div>
 
@@ -103,6 +103,10 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
     <script type="module" src="assets/js/index.js"></script>
+    <script type="module" src="assets/js/consulta.js"></script>
+    <script type="module" src="assets/js/animal.js"></script>
+
   </body>
 </html>
