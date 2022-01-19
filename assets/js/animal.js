@@ -1,19 +1,25 @@
-export class Animal {
+//CLASE ANIMAL GENERAL 
+
+class Animal {
     #animal
     #edad
     #comentarios
-    constructor(animal, edad, comentarios) {
+    #sonido
+    #imagen
+    constructor(animal, edad, comentarios, sonido, imagen) {
         this.#animal = animal
         this.#edad = edad
         this.#comentarios = comentarios
+        this.#sonido = sonido
+        this.#imagen = imagen
     }
 
     get animal(){
-        return `El animal seleccionado es: ${this.animal}`
+        return this.#animal()
     }
 
     get edad(){
-        return `La edad del animal seleccionado es: ${this.edad}`
+        return this.#edad
     }
 
     get comentarios(){
@@ -22,4 +28,12 @@ export class Animal {
     set comentarios(nuevo_comentario){
         this.#comentarios = nuevo_comentario
     }
+    get sonido() {
+        return `<audio controls><source src="./assets/sounds/${this.#sonido}" type="audio/mp3" /></audio>`
+    }
+    get imagen() {
+        return this.#imagen
+    }
 }
+
+export default Animal
