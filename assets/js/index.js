@@ -4,7 +4,8 @@ import Animal from './animal.js'
 
 const Animales = (() => {
     const state = {
-        animales: []
+        animales: [],
+        instancias: []
     }
 
     // DOMCache
@@ -13,6 +14,13 @@ const Animales = (() => {
     const comentario = document.querySelector('#comentarios')
     const tablaHtml = document.querySelector('#Animales')
     const img_container = document.querySelector('.p-5.card.bg-dark')
+    const form = document.querySelector('form')
+    const modal = document.querySelector('.modal-body')
+
+
+    form.addEventListener('submit', submitHandler)
+    $('#modal').on('show.bs.modal', showModalHandler)
+      
 
     // INICIA LA FUNCION E IGUALA DATA CON JSON
     async function init() {
@@ -34,8 +42,7 @@ const Animales = (() => {
         ejemplo.innerHTML = `<img src="assets/imgs/${imageTemplate}" class="img-fluid"/>`
     })
     
-    const form = document.querySelector('form')
-    form.addEventListener('submit', submitHandler)
+    
     
     function submitHandler(e) {
         e.preventDefault()
@@ -68,9 +75,10 @@ const Animales = (() => {
             instancia = new Aguila(form_value.name, form_value.edad, form_value.comentarios, sonido, img)
         }
 
-        const card = htmlCard(instancia)
+        state.instancias.push(instancia)
+        const card = htmlCard(instancia, state.instancias.length - 1)
         tablaHtml.innerHTML += card
-        
+
         // LimpiarFormulario
         // tipo.value = ''
         // edad.value = ''
@@ -79,14 +87,27 @@ const Animales = (() => {
         img_container.innerHTML = '<div id="preview"></div>'
     }
 
-    function htmlCard(instancia) {
+    function htmlCard(instancia, index) {
         return `<div class="card-group" style="width: 18rem;">
-        <img src="./assets/imgs/${instancia.imagen}" class="card-img-top img-fluid" alt="...">
+        <img src="./assets/imgs/${instancia.imagen}" class="card-img-top img-fluid" alt="..." data-toggle="modal" data-target="#modal" data-index="${index}">
         <div class="card-body">${instancia.sonido}</div>
         </div>`
     }
+
+    function htmlModal(animal) {
+        return `<div class="card" style="width: 18rem;">
+        <img src="./assets/imgs/${animal.imagen}" class="card-img-top" alt="...">
+        <h5 class="card-title">${animal.animal}</h5>
+        <div class="card-body">
+          <p class="card-text">${animal.comentarios}</p>
+        </div>
+      </div>`
+    }
     
-    
+    function showModalHandler(e) {
+        const animal = state.instancias[e.relatedTarget.dataset.index]
+        modal.innerHTML = htmlModal(animal)
+    }
     
     return { init } // CORTA LA FUNCION
     

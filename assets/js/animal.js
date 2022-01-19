@@ -15,7 +15,7 @@ class Animal {
     }
 
     get animal(){
-        return this.#animal()
+        return this.#animal
     }
 
     get edad(){
